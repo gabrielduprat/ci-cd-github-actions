@@ -49,8 +49,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-164-44-255.compute-1.amazonaws.com \
             "pm2 restart duprat || pm2 start /var/www/duprat/server.js --name duprat"
-            - name: Envio notificacion de correo
-        
+      
+      - name: Envio notificacion de correo
         uses: dawidd6/action-send-mail@v3
         with: 
           server_address: ${{ secrets.MAIL_SERVER }}
