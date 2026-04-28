@@ -38,14 +38,14 @@ jobs:
           rsync -avz -e "ssh -o StrictHostKeyChecking=no" \
             --exclude='.git' \
             --exclude='node_modules' \
-            ./ ubuntu@ec2-54-164-44-255.compute-1.amazonaws.com:/var/www/api
+            ./ ubuntu@ec2-54-164-44-255.compute-1.amazonaws.com:/var/www/duprat
 
       - name: Instalar las librerias en el servidor
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-164-44-255.compute-1.amazonaws.com \
-            "cd /var/www/api && npm install"
+            "cd /var/www/duprat && npm install"
 
       - name: Reiniciar PM2 correctamente
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-164-44-255.compute-1.amazonaws.com \
-            "pm2 restart api || pm2 start /var/www/api/server.js --name api"
+            "pm2 restart duprat || pm2 start /var/www/duprat/server.js --name duprat"
